@@ -40,8 +40,6 @@ public class BubbleScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        currentState = State.Selected;
-
         GameManager.instance.AddToChain(gameObject);
 
         Debug.Log(Position);
@@ -57,7 +55,6 @@ public class BubbleScript : MonoBehaviour
             if (Vector2.Distance(Position, preBubble.GetComponent<BubbleScript>().GetPosition()) == 1)
             {
                 GameManager.instance.AddToChain(gameObject);
-                currentState = State.Selected;
             }
         }
     }
