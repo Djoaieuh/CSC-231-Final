@@ -1,11 +1,23 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Reflection;
+using UnityEditorInternal;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] GameObject bubblePrefab;
+
+    [SerializeField] List<GameObject> commonBubbleTypes;
+    public enum Rarity
+    {
+        common,
+        rare,
+        epic
+    }
+
+    Rarity rarity;
+
 
     void Start()
     {
@@ -26,7 +38,10 @@ public class GridManager : MonoBehaviour
 
             if (currentPos.transform.childCount == 0)
             {
-                GameObject newBubble = Instantiate(bubblePrefab, currentPos.transform.position, Quaternion.identity, currentPos.transform);
+                GameObject bubbleType = GenerateBubbleType();
+
+                GameObject newBubble = Instantiate(bubbleType, currentPos.transform.position, Quaternion.identity, currentPos.transform);
+
 
                 newBubble.GetComponent<BubbleScript>().SetPosition(position);
 
@@ -40,5 +55,34 @@ public class GridManager : MonoBehaviour
         }
     }
 
+
+    private GameObject GenerateBubbleType()
+    {
+        int rarityId = Random.Range(0, 101);
+
+        if (rarityId <= 120)
+        {
+            rarity = Rarity.common;
+        }
+        else if (rarityId <= 90)
+        {
+            rarity = Rarity.rare;
+        }
+        else
+        {
+            rarity = Rarity.epic;
+        }
+
+        if (rarity == Rarity.common)
+        {
+            GameObject newBubbleType = commonBubbleTypes[Random.Range(0, commonBubbleTypes.Count)];
+
+            return newBubbleType;
+
+        }
+
+        return null;
+
+    }
 
 }

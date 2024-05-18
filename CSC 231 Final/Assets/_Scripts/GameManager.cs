@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     int maxConnections;
+    int currentMult;
+    int chainMult;
+
+    int score;
     private void Awake()
     {
         instance = this;
@@ -18,6 +22,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         maxConnections = 4;
+        currentMult = 1;
+        chainMult = 1;
+
+        score = 0;
     }
     void Update()
     {
@@ -58,8 +66,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < bubbleChain.Count; i++)
         {
-            bubbleChain[i].GetComponent<BubbleClass>().GetScore();
+            score = score + bubbleChain[i].GetComponent<BubbleClass>().GetScore(bubbleChain, currentMult * chainMult);
 
+            Debug.Log(score);
+        }
+
+        for (int i = 0; i < bubbleChain.Count; i++)
+        {
             Destroy(bubbleChain[i]);
         }
 
@@ -93,6 +106,16 @@ public class GameManager : MonoBehaviour
     public List<GameObject> GetChain()
     {
         return bubbleChain;
+    }
+
+    public void SetMult(int mult)
+    {
+        currentMult = mult;
+    }
+
+    public void SetChainMult(int mult)
+    {
+        chainMult = chainMult * mult;
     }
 
 }

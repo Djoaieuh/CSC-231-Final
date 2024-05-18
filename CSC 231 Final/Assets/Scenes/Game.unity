@@ -600,6 +600,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 9154192074117462648, guid: 84fb5aa5536e36f49bd7e67e34e9dac7, type: 3}
+  commonBubbleTypes:
+  - {fileID: 9154192074117462648, guid: 84fb5aa5536e36f49bd7e67e34e9dac7, type: 3}
+  - {fileID: 9154192074117462648, guid: 1adcd93cfbd6be049940b95a70f9d9cc, type: 3}
+  - {fileID: 9154192074117462648, guid: bab19f2108c36ec4a81a8499450d8a85, type: 3}
 --- !u!4 &893900954
 Transform:
   m_ObjectHideFlags: 0

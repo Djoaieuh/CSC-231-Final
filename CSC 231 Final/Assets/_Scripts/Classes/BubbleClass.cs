@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class BubbleClass : MonoBehaviour
 {
-    public abstract void GetScore();
+    public abstract int GetScore(List <GameObject> chainBubble, int mult);
 
 }

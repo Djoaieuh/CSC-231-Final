@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7600387316508474579}
   - component: {fileID: 7387000785820440148}
   - component: {fileID: 8267331790939046}
-  - component: {fileID: -7831597194067619212}
+  - component: {fileID: 6141743102420684381}
   m_Layer: 0
-  m_Name: Bubble
+  m_Name: Bubble 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5184692, g: 0.98490566, b: 0.94860786, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.07848549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ca9fa2ecc808d4e8b2376344880201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7831597194067619212
+--- !u!114 &6141743102420684381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9154192074117462648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25da16b205d558f4f883aae833f06673, type: 3}
+  m_Script: {fileID: 11500000, guid: fe7b607637f3d5741bc2463569b0e948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
