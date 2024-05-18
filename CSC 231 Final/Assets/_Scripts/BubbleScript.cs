@@ -62,6 +62,11 @@ public class BubbleScript : MonoBehaviour
         }
     }
 
+    public void Select()
+    {
+        currentState = State.Selected;
+    }
+
     public void Deselect()
     {
         currentState = State.Idle;
@@ -76,5 +81,4 @@ public class BubbleScript : MonoBehaviour
     {
         return Position;
     }
-
 }

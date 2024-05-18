@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < bubbleChain.Count; i++)
         {
+            bubbleChain[i].GetComponent<BubbleClass>().GetScore();
+
             Destroy(bubbleChain[i]);
         }
 
