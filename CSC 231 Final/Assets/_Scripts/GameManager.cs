@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    int maxConnections;
     private void Awake()
     {
         instance = this;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        maxConnections = 4;
     }
     void Update()
     {
@@ -34,9 +35,10 @@ public class GameManager : MonoBehaviour
 
     public void AddToChain(GameObject currentBubble)
     {
-        if (!bubbleChain.Contains(currentBubble))
+        if (!bubbleChain.Contains(currentBubble) && bubbleChain.Count < maxConnections)
         {
             bubbleChain.Add(currentBubble);
+            currentBubble.GetComponent<BubbleScript>().Select();
 
         }
     }
@@ -54,8 +56,6 @@ public class GameManager : MonoBehaviour
 
     void CalculateScore()
     {
-        Debug.Log("Calculating Score");
-
         for (int i = 0; i < bubbleChain.Count; i++)
         {
             Destroy(bubbleChain[i]);
