@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseBubble1 : BubbleClass
@@ -8,7 +10,7 @@ public class BaseBubble1 : BubbleClass
     {
         int score = 25;
 
-        if (bubbleChain[0] == gameObject)
+        if (bubbleChain[bubbleChain.Count - 1] == gameObject)
         {
             score = score * 4;
         }

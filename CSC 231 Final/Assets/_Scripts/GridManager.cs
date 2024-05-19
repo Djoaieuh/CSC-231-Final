@@ -28,7 +28,7 @@ public class GridManager : MonoBehaviour
 
     }
 
-    private void RefillGrid()
+    public void RefillGrid()
     {
         Vector2 position = new Vector2(1, 1);
 

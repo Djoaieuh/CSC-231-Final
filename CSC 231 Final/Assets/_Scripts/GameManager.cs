@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] GameObject Grid;
+
+    [SerializeField] GameObject GirlGenerator;
+
+
     int maxConnections;
     int currentMult;
     int chainMult;
+
+    float timer;
 
     int score;
     private void Awake()
@@ -27,6 +35,9 @@ public class GameManager : MonoBehaviour
 
         score = 0;
 
+        timer = 30;
+
+        NewRound(); 
     }
     void Update()
     {
@@ -39,6 +50,17 @@ public class GameManager : MonoBehaviour
         {
             ClearChain();
         }
+
+        if (timer <= 0)
+        {
+            GameOver();
+        }
+        else 
+        {
+            timer =- Time.deltaTime;
+        }
+
+
 
     }
 
@@ -69,7 +91,9 @@ public class GameManager : MonoBehaviour
         {
             score = score + bubbleChain[i].GetComponent<BubbleClass>().GetScore(bubbleChain, currentMult * chainMult);
 
-            Debug.Log(score);
+            bubbleChain[i].GetComponent<BubbleClass>().CalculatePref(GirlGenerator.GetComponent<GirlGenerator>().GetPreference());
+
+            //Debug.Log(score);
         }
 
         for (int i = 0; i < bubbleChain.Count; i++)
@@ -117,6 +141,25 @@ public class GameManager : MonoBehaviour
     public void SetChainMult(int mult)
     {
         chainMult = chainMult * mult;
+    }
+
+    private void NewRound()
+    {
+        Grid.GetComponent<GridManager>().RefillGrid();
+
+        timer = 30;
+
+        GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
+
+
+
+
+    }
+
+
+    public void GameOver()
+    {
+        //Debug.Log("Game Over");
     }
 
 }

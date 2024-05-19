@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBubble : BubbleClass 
+public class BaseBubble : BubbleClass
 {
     public override int GetScore(List<GameObject> bubbleChain, int mult)
     {
@@ -13,5 +13,4 @@ public class BaseBubble : BubbleClass
 
         return (score * mult);
     }
-
 }
