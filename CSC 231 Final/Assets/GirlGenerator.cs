@@ -21,7 +21,9 @@ public class GirlGenerator : MonoBehaviour
 
     void Start()
     {
+        currentPreference = "1";
 
+        currentDislike = "1";
     }
     void Update()
     {
@@ -34,26 +36,30 @@ public class GirlGenerator : MonoBehaviour
         previousPreference = currentPreference;
         previousDislike = currentDislike;
 
-        currentPreference = null;
-        currentDislike = null;
+        currentPreference = string.Empty;
+        currentDislike = string.Empty;
 
-        while (currentPreference == null)
+        //while (currentPreference == string.Empty)
         {
             string newPref = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
+
+            Debug.Log(newPref);
 
             if (newPref != previousPreference)
             {
                 currentPreference = newPref;
+
+                Debug.Log(currentPreference);
             }
         }
 
-        while (currentDislike == null)
+        //while (currentDislike == string.Empty)
         {
             string newDislike = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
 
             if (newDislike != previousDislike && newDislike != currentPreference)
             {
-                currentPreference = newDislike;
+                currentDislike = newDislike;
             }
         }
 

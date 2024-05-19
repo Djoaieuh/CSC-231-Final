@@ -91,8 +91,6 @@ public class GameManager : MonoBehaviour
         {
             score = score + bubbleChain[i].GetComponent<BubbleClass>().GetScore(bubbleChain, currentMult * chainMult);
 
-            bubbleChain[i].GetComponent<BubbleClass>().CalculatePref(GirlGenerator.GetComponent<GirlGenerator>().GetPreference());
-
             //Debug.Log(score);
         }
 
@@ -149,7 +147,7 @@ public class GameManager : MonoBehaviour
 
         timer = 30;
 
-        GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
+        //GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
 
 
 
