@@ -30,7 +30,7 @@ public class BubbleScript : MonoBehaviour
     {
         if (currentState == State.Selected)
         {
-            SpriteRenderer.color = Color.red;
+            SpriteRenderer.color = new Color(0.65f, 0.81f, 0.93f);
         }
         else if (currentState == State.Idle)
         {
