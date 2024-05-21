@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8267331790939046}
   - component: {fileID: 1757162175472257723}
   m_Layer: 0
-  m_Name: Bubble 1
-  m_TagString: Untagged
+  m_Name: SerenadePrefab
+  m_TagString: Serenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e67bb7ef994a944da4321536d75fadb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7578ed8ff9fbdbc4c84803f343572b2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 1.32
 --- !u!114 &8267331790939046
 MonoBehaviour:
   m_ObjectHideFlags: 0

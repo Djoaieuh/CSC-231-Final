@@ -606,6 +606,10 @@ MonoBehaviour:
   - {fileID: 9154192074117462648, guid: 84fb5aa5536e36f49bd7e67e34e9dac7, type: 3}
   - {fileID: 9154192074117462648, guid: 1adcd93cfbd6be049940b95a70f9d9cc, type: 3}
   - {fileID: 9154192074117462648, guid: bab19f2108c36ec4a81a8499450d8a85, type: 3}
+  - {fileID: 9154192074117462648, guid: 31b38af372d6cc548bb89f392cf1f7b1, type: 3}
+  - {fileID: 9154192074117462648, guid: 24352ca9c46ae004392adcb5a9a230e5, type: 3}
+  - {fileID: 9154192074117462648, guid: 8a69757d0368fd348b41d1a07d9654a4, type: 3}
+  - {fileID: 9154192074117462648, guid: 26cfb8231c7e8864f8e7c35437b2f991, type: 3}
 --- !u!4 &893900954
 Transform:
   m_ObjectHideFlags: 0
@@ -844,7 +848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1044673835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,10 +863,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   bubbleTypes:
-  - BaseBubble
-  - BaseBubble
-  - BaseBubble
-  - BaseBubble
+  - Chocolate
+  - Magic Trick
+  - Love Potion
+  - Hand Gesture
+  - Selfie
+  - Flower
+  - Teddy Bear
+  - Serenade
+  - Gift
+  - Flirt
 --- !u!4 &1044673836
 Transform:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,24 @@ public class GameManager : MonoBehaviour
 
 
     int maxConnections;
+
+    int movesLeft;
+
+    int bonusConnections;
+
+    int connectionsLeft;
+
     int currentMult;
-    int chainMult;
+    int currentChainMult;
+
+    int nextMult;
+    int nextChainMult;
 
     float timer;
 
     int score;
+
+    string prevBubbleType;
     private void Awake()
     {
         instance = this;
@@ -30,12 +43,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         maxConnections = 4;
+        connectionsLeft = maxConnections;
+
         currentMult = 1;
-        chainMult = 1;
+        currentChainMult = 1;
+
+        nextMult = 1;
+        nextChainMult = 1;
 
         score = 0;
 
         timer = 30;
+
+        prevBubbleType = "";
 
         NewRound(); 
     }
@@ -66,10 +86,17 @@ public class GameManager : MonoBehaviour
 
     public void AddToChain(GameObject currentBubble)
     {
-        if (!bubbleChain.Contains(currentBubble) && bubbleChain.Count < maxConnections)
+        if (!bubbleChain.Contains(currentBubble) && connectionsLeft != 0)
         {
             bubbleChain.Add(currentBubble);
             currentBubble.GetComponent<BubbleScript>().Select();
+
+            if (!currentBubble.GetComponent<BubbleClass>().CompareType(prevBubbleType))
+            {
+                connectionsLeft--;
+            }
+
+            prevBubbleType = currentBubble.tag;
 
         }
     }
@@ -78,6 +105,8 @@ public class GameManager : MonoBehaviour
     {
         if (bubbleChain.Count > 2)
         {
+            bonusConnections = 0;
+
             CalculateScore();
         }
 
@@ -87,19 +116,34 @@ public class GameManager : MonoBehaviour
 
     void CalculateScore()
     {
+        int newScore = 0;
+
+        currentChainMult = nextChainMult;
+        nextChainMult = 1;
+
+        string currentP = GirlGenerator.GetComponent<GirlGenerator>().GetPreference();
+
+        string currentD = GirlGenerator.GetComponent<GirlGenerator>().GetDislike();
+
+
         for (int i = 0; i < bubbleChain.Count; i++)
         {
-            score = score + bubbleChain[i].GetComponent<BubbleClass>().GetScore(bubbleChain, currentMult * chainMult);
+            currentMult = nextMult;
+            nextMult = 1;
 
-            //Debug.Log(score);
+            newScore = newScore + (bubbleChain[i].GetComponent<BubbleClass>().GetScore(bubbleChain, currentP, currentD) * currentMult);
+
         }
+
+        score = score + (newScore * currentChainMult);
+
 
         for (int i = 0; i < bubbleChain.Count; i++)
         {
             Destroy(bubbleChain[i]);
         }
 
-        ClearChain();
+        NextMove();
     }
 
     public bool IsChainEmpty()
@@ -123,6 +167,8 @@ public class GameManager : MonoBehaviour
             currentbubble.GetComponent<BubbleScript>().Deselect();
         }
 
+        connectionsLeft = maxConnections + bonusConnections;
+
         bubbleChain.Clear();
     }
 
@@ -133,12 +179,22 @@ public class GameManager : MonoBehaviour
 
     public void SetMult(int mult)
     {
-        currentMult = mult;
+        nextMult = nextMult * mult;
     }
 
-    public void SetChainMult(int mult)
+    public void SetNextChainMult(int mult)
     {
-        chainMult = chainMult * mult;
+        nextChainMult = nextChainMult * mult;
+    }
+
+    public void SetCurrentChainMult(int mult)
+    {
+        currentChainMult = currentChainMult * mult;
+    }
+
+    public void AddConnections(int c)
+    {
+        bonusConnections += c;
     }
 
     private void NewRound()
@@ -147,13 +203,26 @@ public class GameManager : MonoBehaviour
 
         timer = 30;
 
-        //GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
+        GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
 
-
+        movesLeft = 3;
 
 
     }
 
+    private void NextMove()
+    {
+        movesLeft--;
+
+        if (movesLeft == 0)
+        {
+            GameOver();
+        }
+        else
+        {
+            //Grid.GetComponent<GridManager>().RefillGrid();
+        }
+    }
 
     public void GameOver()
     {

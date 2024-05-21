@@ -34,7 +34,7 @@ public class BubbleScript : MonoBehaviour
         }
         else if (currentState == State.Idle)
         {
-            //SpriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
         }
     }
 

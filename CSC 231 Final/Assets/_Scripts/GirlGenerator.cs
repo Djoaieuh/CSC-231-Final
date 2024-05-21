@@ -21,9 +21,9 @@ public class GirlGenerator : MonoBehaviour
 
     void Start()
     {
-        currentPreference = "1";
+        currentPreference = "Chocolate";
 
-        currentDislike = "1";
+        currentDislike = "Hand Gesture";
     }
     void Update()
     {
@@ -36,10 +36,10 @@ public class GirlGenerator : MonoBehaviour
         previousPreference = currentPreference;
         previousDislike = currentDislike;
 
-        currentPreference = string.Empty;
-        currentDislike = string.Empty;
+        currentPreference = "";
+        currentDislike = "";
 
-        //while (currentPreference == string.Empty)
+        while (currentPreference == "")
         {
             string newPref = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
 
@@ -53,7 +53,7 @@ public class GirlGenerator : MonoBehaviour
             }
         }
 
-        //while (currentDislike == string.Empty)
+        while (currentDislike == "")
         {
             string newDislike = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
 

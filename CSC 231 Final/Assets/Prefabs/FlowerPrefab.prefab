@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7600387316508474579}
   - component: {fileID: 7387000785820440148}
   - component: {fileID: 8267331790939046}
-  - component: {fileID: -7831597194067619212}
+  - component: {fileID: -5367141452768968375}
   m_Layer: 0
-  m_Name: Bubble
-  m_TagString: Untagged
+  m_Name: FlowerPrefab
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7578ed8ff9fbdbc4c84803f343572b2b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 844cd58fea6574f4aa10bfa3385adb59, type: 3}
   m_Color: {r: 1, g: 0.98490566, b: 0.94860786, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 1.32
 --- !u!114 &8267331790939046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ca9fa2ecc808d4e8b2376344880201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7831597194067619212
+--- !u!114 &-5367141452768968375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9154192074117462648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25da16b205d558f4f883aae833f06673, type: 3}
+  m_Script: {fileID: 11500000, guid: 30353a990f6ca4d4797dd9b47311c564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
