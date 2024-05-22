@@ -41,8 +41,6 @@ public class BubbleScript : MonoBehaviour
     private void OnMouseDown()
     {
         GameManager.instance.AddToChain(gameObject);
-
-        Debug.Log(Position);
     }
 
     private void OnMouseEnter()

@@ -74,10 +74,12 @@ public class GameManager : MonoBehaviour
         if (timer <= 0)
         {
             GameOver();
+
+            Debug.Log(timer);
         }
-        else 
+        else
         {
-            timer =- Time.deltaTime;
+            timer = timer - Time.deltaTime;
         }
 
 
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void AddToChain(GameObject currentBubble)
     {
-        if (!bubbleChain.Contains(currentBubble) && connectionsLeft != 0)
+        if (!bubbleChain.Contains(currentBubble) && connectionsLeft != 0 && movesLeft > 0)
         {
             bubbleChain.Add(currentBubble);
             currentBubble.GetComponent<BubbleScript>().Select();
@@ -109,8 +111,6 @@ public class GameManager : MonoBehaviour
 
             CalculateScore();
         }
-
-        ClearChain();
     }
 
 
@@ -140,6 +140,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < bubbleChain.Count; i++)
         {
+            bubbleChain[i].transform.parent = null;
+
             Destroy(bubbleChain[i]);
         }
 
@@ -212,6 +214,8 @@ public class GameManager : MonoBehaviour
 
     private void NextMove()
     {
+        ClearChain();
+
         movesLeft--;
 
         if (movesLeft == 0)
@@ -220,13 +224,25 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //Grid.GetComponent<GridManager>().RefillGrid();
+            Grid.GetComponent<GridManager>().RefillGrid();
         }
+    }
+
+    public int GetTimer()
+    {
+        return (int)timer;
+    }
+
+    public void AddTime(int time)
+    {
+        timer += time;
     }
 
     public void GameOver()
     {
-        //Debug.Log("Game Over");
+        Grid.GetComponent<GridManager>().RefillGrid();
+
+        Debug.Log("Game Over");
     }
 
 }

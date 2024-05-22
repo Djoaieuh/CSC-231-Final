@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GirlGenerator : MonoBehaviour
 {
 
-    [SerializeField] List<Sprite> sprites;
+    public List<HairColor> hairColors = new List<HairColor>();
 
+    public List<EyeColor> eyeColors = new List<EyeColor>();
+
+    public List<Sprite> BaseBodies;
+
+    public List<Sprite> Clothes;
+
+    public List<Sprite> Accessories;
+
+    [SerializeField] GameObject Girl;
 
     [SerializeField] List<string> bubbleTypes;
 
@@ -43,13 +53,9 @@ public class GirlGenerator : MonoBehaviour
         {
             string newPref = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
 
-            Debug.Log(newPref);
-
             if (newPref != previousPreference)
             {
                 currentPreference = newPref;
-
-                Debug.Log(currentPreference);
             }
         }
 
@@ -63,6 +69,7 @@ public class GirlGenerator : MonoBehaviour
             }
         }
 
+        GenerateSprite();
     }
 
     public string GetPreference()
@@ -73,6 +80,33 @@ public class GirlGenerator : MonoBehaviour
     public string GetDislike()
     {
         return currentDislike;
+    }
+
+    void GenerateSprite()
+    {
+        Girl.GetComponent<GirlScript>().SetBody(BaseBodies);
+
+        int Color = Random.Range(0, hairColors.Count);
+
+        int HairType = Random.Range(0, hairColors[Color].hairTypes.Count);
+
+        if (HairType % 2 == 1)
+        {
+            HairType = HairType - 1;
+        }
+
+        Girl.GetComponent<GirlScript>().SetHair(hairColors[Color].hairTypes[HairType]);
+
+        Girl.GetComponent<GirlScript>().SetBackHair(hairColors[Color].hairTypes[HairType + 1]);
+
+        Girl.GetComponent<GirlScript>().SetClothes(Clothes[Random.Range(0, Clothes.Count)]);
+
+        int accessoryID = Random.Range(0, Accessories.Count + 1);
+
+        if (accessoryID != Accessories.Count + 1)
+        {
+            Girl.GetComponent<GirlScript>().SetAccessory(Accessories[accessoryID]);
+        }
     }
 
 }
