@@ -37,7 +37,10 @@ public class GirlGenerator : MonoBehaviour
     }
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.Space))
+        {
+            GenerateNewGirl();
+        }
     }
 
     public void GenerateNewGirl()
@@ -90,6 +93,8 @@ public class GirlGenerator : MonoBehaviour
 
         int HairType = Random.Range(0, hairColors[Color].hairTypes.Count);
 
+        int eyeColor = Random.Range(0, eyeColors.Count);
+
         if (HairType % 2 == 1)
         {
             HairType = HairType - 1;
@@ -101,7 +106,9 @@ public class GirlGenerator : MonoBehaviour
 
         Girl.GetComponent<GirlScript>().SetClothes(Clothes[Random.Range(0, Clothes.Count)]);
 
-        int accessoryID = Random.Range(0, Accessories.Count + 1);
+        Girl.GetComponent<GirlScript>().SetEyes(eyeColors[eyeColor].eyeExpressions);
+
+        int accessoryID = Random.Range(0, Accessories.Count);
 
         if (accessoryID != Accessories.Count + 1)
         {
