@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     float timer;
 
     int score;
+    int scoreGoal;
+
+    int curRound;
 
     string prevBubbleType;
     private void Awake()
@@ -57,7 +60,11 @@ public class GameManager : MonoBehaviour
 
         prevBubbleType = "";
 
-        NewRound(); 
+        curRound = 0;
+
+        scoreGoal = 50;
+
+        NewRound();
     }
     void Update()
     {
@@ -111,6 +118,8 @@ public class GameManager : MonoBehaviour
 
             CalculateScore();
         }
+
+        ClearChain();
     }
 
 
@@ -137,12 +146,9 @@ public class GameManager : MonoBehaviour
 
         score = score + (newScore * currentChainMult);
 
-
         for (int i = 0; i < bubbleChain.Count; i++)
         {
-            bubbleChain[i].transform.parent = null;
-
-            Destroy(bubbleChain[i]);
+            bubbleChain[i].GetComponent<BubbleScript>().Disappear();
         }
 
         NextMove();
@@ -201,9 +207,19 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        Grid.GetComponent<GridManager>().RefillGrid();
+        curRound++;
+
+        for (int i = 0; i <= 1; i++)
+        {
+            scoreGoal = (int)(scoreGoal * 1.12f);
+        }
+
+
+        Grid.GetComponent<GridManager>().ResetGrid();
 
         timer = 30;
+
+        score = 0;
 
         GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
 
@@ -212,7 +228,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void NextMove()
+    public void NextMove()
     {
         ClearChain();
 
@@ -220,11 +236,7 @@ public class GameManager : MonoBehaviour
 
         if (movesLeft == 0)
         {
-            GameOver();
-        }
-        else
-        {
-            Grid.GetComponent<GridManager>().RefillGrid();
+            EndRound();
         }
     }
 
@@ -238,11 +250,24 @@ public class GameManager : MonoBehaviour
         timer += time;
     }
 
+    void EndRound()
+    {
+        if (score >= scoreGoal)
+        {
+            NewRound();
+        }
+
+        else
+        {
+            GameOver();
+        }
+    }
+
+
     public void GameOver()
     {
-        Grid.GetComponent<GridManager>().RefillGrid();
+        Grid.GetComponent<GridManager>().ResetGrid();
 
         Debug.Log("Game Over");
     }
-
 }

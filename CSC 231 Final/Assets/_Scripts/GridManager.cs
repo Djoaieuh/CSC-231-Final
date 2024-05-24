@@ -19,21 +19,16 @@ public class GridManager : MonoBehaviour
 
     }
 
-    public void RefillGrid()
+    public void RefillBubble(GameObject parent)
     {
-        Debug.Log("Grid Refill");
-
         Vector2 position = new Vector2(1, 1);
 
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject currentPos = transform.GetChild(i).gameObject;
 
-            if (currentPos.transform.childCount == 0)
+            if (parent == currentPos && currentPos.transform.childCount == 0)
             {
-
-                Debug.Log("No Child Found");
-
                 GameObject bubbleType = GenerateBubbleType();
 
                 GameObject newBubble = Instantiate(bubbleType, currentPos.transform.position, Quaternion.identity, currentPos.transform);
@@ -48,6 +43,22 @@ public class GridManager : MonoBehaviour
                 position.x = 1;
                 position.y += 1;
             }
+        }
+    }
+
+    public void ResetGrid()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.transform.childCount == 0)
+            {
+                RefillBubble(transform.GetChild(i).gameObject);
+            }
+            else
+            {
+                transform.GetChild(i).gameObject.transform.GetChild(0).GetComponent<BubbleScript>().Disappear();
+            }
+
         }
     }
 
