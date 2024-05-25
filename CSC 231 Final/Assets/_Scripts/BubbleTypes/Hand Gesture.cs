@@ -21,6 +21,8 @@ public class HandGesture : BubbleClass
             GameManager.instance.SetCurrentChainMult(2);
         }
 
+        Debug.Log(score);
+
         return score;
     }
 

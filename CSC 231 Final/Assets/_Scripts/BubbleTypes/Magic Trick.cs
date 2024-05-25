@@ -18,8 +18,8 @@ public class MagicTrick : BubbleClass
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
-        
-        
+
+        Debug.Log(score);
 
         return score;
     }

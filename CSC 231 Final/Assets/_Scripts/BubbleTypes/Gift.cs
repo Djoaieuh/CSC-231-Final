@@ -16,6 +16,13 @@ public class Gift : BubbleClass
 
         GameManager.instance.SetNextChainMult(2);
 
+        if (CompareType(preference))
+        {
+            GameManager.instance.SetNextChainMult(2);
+        }
+
+        Debug.Log(score);
+
         return score;
     }
 }

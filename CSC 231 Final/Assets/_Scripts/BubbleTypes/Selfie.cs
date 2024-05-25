@@ -13,10 +13,12 @@ public class Selfie : BubbleClass
 
         int score = 0;
 
-        for (int i = 0; i > bubbleChain.Count; i++)
+        for (int i = 0; i <= bubbleChain.Count; i++)
         {
             if (bubbleChain[i] == gameObject)
             {
+                Debug.Log("Found itself");
+
                 GameObject prevBubble = bubbleChain[i - 1];
 
                 score = prevBubble.GetComponent<BubbleClass>().GetScore(bubbleChain, preference, dislike);
@@ -25,14 +27,12 @@ public class Selfie : BubbleClass
             }
         }
 
-
-        Debug.Log("Base Bubble 3");
-
-
         if (CompareType(preference))
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
+
+        Debug.Log(score);
 
         return score;
     }

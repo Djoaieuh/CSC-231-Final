@@ -15,7 +15,7 @@ public class Flower : BubbleClass
 
         foreach (GameObject bubble in bubbleChain)
         {
-            if (CompareType(bubble.tag))
+            if (CompareType(bubble.tag) && bubble != gameObject)
             {
                 score = score + 30;
             }
@@ -25,7 +25,9 @@ public class Flower : BubbleClass
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
-        
+
+        Debug.Log(score);
+
         return score;
     }
 }

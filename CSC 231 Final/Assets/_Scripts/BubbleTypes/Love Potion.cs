@@ -11,17 +11,19 @@ public class LovePotion : BubbleClass
             return -50;
         }
 
-        int score = 20;
+        float score = 20;
 
-        score = score + 250 * (100 - (GameManager.instance.GetTimer() / 30) * 100);
+        score = score + (250 * (1 - (GameManager.instance.GetTimer() * 0.0333f)));
+
+        Debug.Log(GameManager.instance.GetTimer());
 
         if (CompareType(preference))
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
-        
-        
 
-        return score;
+        Debug.Log(score);
+
+        return (int)score;
     }
 }

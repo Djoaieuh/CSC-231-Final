@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
 
 public class GameManager : MonoBehaviour
@@ -37,6 +39,10 @@ public class GameManager : MonoBehaviour
     int curRound;
 
     string prevBubbleType;
+
+    string currentP;
+
+    string currentD;
     private void Awake()
     {
         instance = this;
@@ -101,6 +107,8 @@ public class GameManager : MonoBehaviour
             bubbleChain.Add(currentBubble);
             currentBubble.GetComponent<BubbleScript>().Select();
 
+            Debug.Log("Compare for selection");
+
             if (!currentBubble.GetComponent<BubbleClass>().CompareType(prevBubbleType))
             {
                 connectionsLeft--;
@@ -131,10 +139,6 @@ public class GameManager : MonoBehaviour
         currentChainMult = nextChainMult;
         nextChainMult = 1;
 
-        string currentP = GirlGenerator.GetComponent<GirlGenerator>().GetPreference();
-
-        string currentD = GirlGenerator.GetComponent<GirlGenerator>().GetDislike();
-
 
         for (int i = 0; i < bubbleChain.Count; i++)
         {
@@ -145,7 +149,12 @@ public class GameManager : MonoBehaviour
 
         }
 
+        Debug.Log(newScore);
+
         score = score + (newScore * currentChainMult);
+
+        Debug.Log(score);
+
         ScoreManager.GetComponent<ScoreManager>().GainPoints(score);
 
         for (int i = 0; i < bubbleChain.Count; i++)
@@ -199,7 +208,9 @@ public class GameManager : MonoBehaviour
 
     public void SetCurrentChainMult(int mult)
     {
+        Debug.Log(currentChainMult);
         currentChainMult = currentChainMult * mult;
+        Debug.Log(currentChainMult);
     }
 
     public void AddConnections(int c)
@@ -209,13 +220,13 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        curRound++;
 
-        for (int i = 0; i <= 1; i++)
+        for (int i = 0; i < curRound; i++)
         {
-            scoreGoal = (int)(scoreGoal * 1.12f);
+            scoreGoal = (int)(scoreGoal * 1.05f);
         }
 
+        ++curRound;
 
         Grid.GetComponent<GridManager>().ResetGrid();
 
@@ -225,6 +236,10 @@ public class GameManager : MonoBehaviour
 
         GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
 
+        currentP = GirlGenerator.GetComponent<GirlGenerator>().GetPreference();
+
+        currentD = GirlGenerator.GetComponent<GirlGenerator>().GetDislike();
+
         movesLeft = 3;
         ScoreManager.GetComponent<ScoreManager>().ResetBar();
 
@@ -233,12 +248,15 @@ public class GameManager : MonoBehaviour
     public void NextMove()
     {
         ClearChain();
-
         movesLeft--;
 
-        if (movesLeft == 0)
+        if (score >= scoreGoal)
         {
-            EndRound();
+            NewRound();
+        }
+        else if (movesLeft == 0)
+        {
+            GameOver();
         }
     }
 
@@ -252,22 +270,10 @@ public class GameManager : MonoBehaviour
         timer += time;
     }
 
-    void EndRound()
-    {
-        if (score >= scoreGoal)
-        {
-            NewRound();
-        }
-
-        else
-        {
-            GameOver();
-        }
-    }
-
-
     public void GameOver()
     {
+        SceneManager.LoadScene(2);
+
         Grid.GetComponent<GridManager>().ResetGrid();
         ScoreManager.GetComponent<ScoreManager>().ResetBar();
         Debug.Log("Game Over");
@@ -276,5 +282,15 @@ public class GameManager : MonoBehaviour
     public int GetMaxScore()
     {
         return scoreGoal;
+    }
+
+    public int GetMoves()
+    {
+        return movesLeft;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

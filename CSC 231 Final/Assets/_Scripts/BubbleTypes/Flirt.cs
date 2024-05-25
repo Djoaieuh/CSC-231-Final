@@ -24,7 +24,7 @@ public class Flirt : BubbleClass
                 score = score + 50;
                 break;
             case 2:
-                GameManager.instance.SetNextChainMult(2);
+                GameManager.instance.SetCurrentChainMult(2);
                 break;
             case 3:
                 GameManager.instance.SetNextChainMult(2);
@@ -39,8 +39,8 @@ public class Flirt : BubbleClass
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
-        
-        
+
+        Debug.Log(score);
 
         return score;
     }

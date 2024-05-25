@@ -72,6 +72,10 @@ public class GirlGenerator : MonoBehaviour
             }
         }
 
+        Debug.Log(currentPreference);
+        Debug.Log(currentDislike);
+
+
         GenerateSprite();
     }
 

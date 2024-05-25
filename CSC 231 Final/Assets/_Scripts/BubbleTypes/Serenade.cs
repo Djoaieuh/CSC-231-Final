@@ -17,6 +17,8 @@ public class Serenade : BubbleClass
 
         if (bubbleChain[bubbleChain.Count - 1] == gameObject)
         {
+            Debug.Log("Found itself");
+
             score = score * 4;
         }
 
@@ -24,6 +26,8 @@ public class Serenade : BubbleClass
         {
             GameManager.instance.SetCurrentChainMult(2);
         }
+
+        Debug.Log(score);
 
         return score;
     }

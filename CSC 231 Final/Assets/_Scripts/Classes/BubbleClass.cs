@@ -8,6 +8,10 @@ public abstract class BubbleClass : MonoBehaviour
 
     public bool CompareType(string t)
     {
+        Debug.Log(t);
+
+        Debug.Log(gameObject.tag);
+
         if (gameObject.CompareTag(t))
         {
             return true;
