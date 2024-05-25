@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject GirlGenerator;
 
+    [SerializeField] GameObject ScoreManager;
 
     int maxConnections;
 
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         curRound = 0;
 
-        scoreGoal = 50;
+        scoreGoal = 250;
 
         NewRound();
     }
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviour
         }
 
         score = score + (newScore * currentChainMult);
+        ScoreManager.GetComponent<ScoreManager>().GainPoints(score);
 
         for (int i = 0; i < bubbleChain.Count; i++)
         {
@@ -224,7 +226,7 @@ public class GameManager : MonoBehaviour
         GirlGenerator.GetComponent<GirlGenerator>().GenerateNewGirl();
 
         movesLeft = 3;
-
+        ScoreManager.GetComponent<ScoreManager>().ResetBar();
 
     }
 
@@ -267,7 +269,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Grid.GetComponent<GridManager>().ResetGrid();
-
+        ScoreManager.GetComponent<ScoreManager>().ResetBar();
         Debug.Log("Game Over");
+    }
+
+    public int GetMaxScore()
+    {
+        return scoreGoal;
     }
 }

@@ -10,19 +10,16 @@ public class ScoreManager : MonoBehaviour
     float TargetScore;
     private float LerpSpeed = 5f;
     private float time;
+   float MaxScore;
     void Start()
     {
-        SetScoreBar(100);
+        MaxScore = (float) GameManager.instance.GetMaxScore();
+        SetScoreBar(MaxScore);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(2)) 
-        {
-            GainPoints(10);
-        }
-
         AnimateScoreBar();
     }
 
@@ -45,5 +42,10 @@ public class ScoreManager : MonoBehaviour
         float MaxScore = ScoreBar.value;
         time = Time.deltaTime * LerpSpeed;
         ScoreBar.value = Mathf.Lerp(MaxScore, TargetScore, time);
+    }
+
+    public void ResetBar()
+    {
+        CurrentScore = 0;
     }
 }
