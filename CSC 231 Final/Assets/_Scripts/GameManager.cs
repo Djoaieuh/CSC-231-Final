@@ -242,6 +242,7 @@ public class GameManager : MonoBehaviour
 
         movesLeft = 3;
         ScoreManager.GetComponent<ScoreManager>().ResetBar();
+        ScoreManager.GetComponent<ScoreManager>().SetScoreBar(scoreGoal);
 
     }
 
