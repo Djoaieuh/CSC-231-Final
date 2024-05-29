@@ -11,6 +11,8 @@ public class GirlScript : MonoBehaviour
     SpriteRenderer Eyes;
     SpriteRenderer Accessory;
 
+    List<Sprite> expressions;
+
     void Start()
     {
         Body = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -49,11 +51,20 @@ public class GirlScript : MonoBehaviour
 
     public void SetEyes(List<Sprite> eyes)
     {
-        Eyes.sprite = eyes[0];
+        expressions = eyes;
+
+        Eyes.sprite = expressions[0];
     }
 
     public void SetAccessory(Sprite accessory)
     {
         Accessory.sprite = accessory;
+    }
+
+    public void SetExpression(int expIndex)
+    {
+        Debug.Log("Function Called");
+
+        Eyes.sprite = expressions[expIndex];
     }
 }

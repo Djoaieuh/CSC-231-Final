@@ -8,10 +8,16 @@ public class BackgroundGenerator : MonoBehaviour
     List<Sprite> Background;
 
     SpriteRenderer SpriteRenderer;
-    void Start()
+
+    private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
-        GenerateBackground();
+    }
+
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -22,7 +28,6 @@ public class BackgroundGenerator : MonoBehaviour
 
     public void GenerateBackground()
     {
-        
         SpriteRenderer.sprite = Background[Random.Range(0,Background.Count)];
     }
 }
