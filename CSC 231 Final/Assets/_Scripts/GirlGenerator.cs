@@ -17,9 +17,15 @@ public class GirlGenerator : MonoBehaviour
 
     public List<Sprite> Accessories;
 
+    public List<Sprite> BubbleSprites;
+
     [SerializeField] GameObject Girl;
 
     [SerializeField] List<string> bubbleTypes;
+
+    [SerializeField] GameObject Preference, Dislike;
+
+    SpriteRenderer pref, dislike;
 
     string currentPreference;
 
@@ -34,6 +40,10 @@ public class GirlGenerator : MonoBehaviour
         currentPreference = "Chocolate";
 
         currentDislike = "Hand Gesture";
+
+        pref = Preference.GetComponent<SpriteRenderer>();
+
+        dislike = Dislike.GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -54,21 +64,28 @@ public class GirlGenerator : MonoBehaviour
 
         while (currentPreference == "")
         {
-            string newPref = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
+            int newPrefID = Random.Range(0, bubbleTypes.Count);
+
+            string newPref = bubbleTypes[newPrefID];
 
             if (newPref != previousPreference)
             {
                 currentPreference = newPref;
+                Preference.GetComponent<SpriteRenderer>().sprite = BubbleSprites[newPrefID];
             }
         }
 
         while (currentDislike == "")
         {
-            string newDislike = bubbleTypes[Random.Range(0, bubbleTypes.Count)];
+            int newDislikeID = Random.Range(0, bubbleTypes.Count);
+
+            string newDislike = bubbleTypes[newDislikeID];
 
             if (newDislike != previousDislike && newDislike != currentPreference)
             {
                 currentDislike = newDislike;
+
+                Dislike.GetComponent<SpriteRenderer>().sprite = BubbleSprites[newDislikeID];
             }
         }
 

@@ -17,13 +17,18 @@ public class Selfie : BubbleClass
         {
             if (bubbleChain[i] == gameObject)
             {
-                Debug.Log("Found itself");
+                if (i == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    GameObject prevBubble = bubbleChain[i - 1];
 
-                GameObject prevBubble = bubbleChain[i - 1];
+                    score = prevBubble.GetComponent<BubbleClass>().GetScore(bubbleChain, preference, dislike);
 
-                score = prevBubble.GetComponent<BubbleClass>().GetScore(bubbleChain, preference, dislike);
-
-                break;
+                    break;
+                }
             }
         }
 

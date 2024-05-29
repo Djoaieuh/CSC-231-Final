@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject ScoreManager;
 
+<<<<<<< HEAD
+=======
+    [SerializeField] GameObject Background;
+
+    [SerializeField] GameObject Girl;
+>>>>>>> 6fd5454283761359987dc96f22191502bfde776d
 
     int maxConnections;
 
@@ -241,6 +247,8 @@ public class GameManager : MonoBehaviour
 
         currentD = GirlGenerator.GetComponent<GirlGenerator>().GetDislike();
 
+        Background.GetComponent<BackgroundGenerator>().GenerateBackground();
+
         movesLeft = 3;
         ScoreManager.GetComponent<ScoreManager>().ResetBar();
         ScoreManager.GetComponent<ScoreManager>().SetScoreBar(scoreGoal);
@@ -255,6 +263,18 @@ public class GameManager : MonoBehaviour
         if (score >= scoreGoal)
         {
             NewRound();
+        }
+        else if (((float)score / (float)scoreGoal) * 100 >= 66)
+        {
+            Debug.Log("Higher than 66");
+
+            Girl.GetComponent<GirlScript>().SetExpression(1);
+        }
+        else if (((float)score / (float)scoreGoal) * 100 >= 33)
+        {
+            Debug.Log("Higher than 33");
+
+            Girl.GetComponent<GirlScript>().SetExpression(5);
         }
         else if (movesLeft == 0)
         {
