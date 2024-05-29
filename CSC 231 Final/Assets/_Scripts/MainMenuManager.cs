@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+
+    AudioManager audiomanager;
+
+    void Start()
+    {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     public void GoToGame()
     {
         SceneManager.LoadScene("Game");
@@ -18,5 +26,10 @@ public class MainMenuManager : MonoBehaviour
     public void GoToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ButtonSound()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.Button);
     }
 }

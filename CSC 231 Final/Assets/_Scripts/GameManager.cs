@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject ScoreManager;
 
+
     int maxConnections;
 
     int movesLeft;
@@ -294,4 +295,5 @@ public class GameManager : MonoBehaviour
     {
         return score;
     }
+
 }
