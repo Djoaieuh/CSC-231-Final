@@ -1004,7 +1004,7 @@ MonoBehaviour:
   ScoreManager: {fileID: 960629702}
   Background: {fileID: 1173717735}
   Girl: {fileID: 105559919}
-  Stats: {fileID: 0}
+  Stats: {fileID: 1798072361}
   bubbleChain: []
 --- !u!4 &595859386
 Transform:
