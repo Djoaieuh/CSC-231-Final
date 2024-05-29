@@ -714,9 +714,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186.46, y: 99}
+  m_AnchoredPosition: {x: -485, y: 289}
   m_SizeDelta: {x: 41.13, y: 40.47}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: -2.1072562, y: 2.4873333}
 --- !u!114 &273589978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1243,8 @@ MonoBehaviour:
   MenuMusic: {fileID: 0}
   GameMusic: {fileID: 0}
   Button: {fileID: 8300000, guid: eb7997d1c393e5c4b89c94b0a2c3d9bc, type: 3}
+  Connect: {fileID: 8300000, guid: 5dc29160be1ccdb4e873521059883154, type: 3}
+  Disconnect: {fileID: 8300000, guid: 5f291e25dd6ce8f4a90cb071f317dc9d, type: 3}
 --- !u!4 &1016194385
 Transform:
   m_ObjectHideFlags: 0
@@ -2042,8 +2044,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.3, y: -16.06}
-  m_SizeDelta: {x: 427.2, y: 186.33}
+  m_AnchoredPosition: {x: 18.15, y: -10.58}
+  m_SizeDelta: {x: 725.5, y: 397.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763344538
 MonoBehaviour:
@@ -2094,8 +2096,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
