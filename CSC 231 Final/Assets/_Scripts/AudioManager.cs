@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip Button;
     public AudioClip Connect;
     public AudioClip Disconnect;
+    public AudioClip ClockTicking;
+    public AudioClip GameOver;
 
     private void Awake()
     {

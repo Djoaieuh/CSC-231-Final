@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        PlayMenuMusic();
     }
 
     public void GoToGame()
@@ -31,5 +32,10 @@ public class MainMenuManager : MonoBehaviour
     public void ButtonSound()
     {
         AudioManager.instance.PlaySFX(audiomanager.Button);
+    }
+
+    public void PlayMenuMusic()
+    {
+        AudioManager.instance.PlayMenuMusic(audiomanager.MenuMusic);
     }
 }

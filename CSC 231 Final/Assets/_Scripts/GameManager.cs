@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
+        PlayGameMusic();
         maxConnections = 4;
         connectionsLeft = maxConnections;
 
@@ -298,6 +298,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameOverSound();
         SceneManager.LoadScene(2);
 
         Grid.GetComponent<GridManager>().ResetGrid();
@@ -328,5 +329,20 @@ public class GameManager : MonoBehaviour
     public void DisconnectSound()
     {
         AudioManager.instance.PlaySFX(audiomanager.Disconnect);
+    }
+
+    public void ClockTicking()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.ClockTicking);
+    }
+
+    public void PlayGameMusic()
+    {
+        AudioManager.instance.PlayGameMusic(audiomanager.GameMusic);
+    }
+
+    public void GameOverSound()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.GameOver);
     }
 }

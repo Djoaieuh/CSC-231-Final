@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1240,11 +1240,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicSource: {fileID: 89572413}
   SFXSource: {fileID: 1390657704}
-  MenuMusic: {fileID: 0}
-  GameMusic: {fileID: 0}
+  MenuMusic: {fileID: 8300000, guid: aa315cab12e8d8447add141f02d85be2, type: 3}
+  GameMusic: {fileID: 8300000, guid: e1eec776334b7634ba455963f8af2e9c, type: 3}
   Button: {fileID: 8300000, guid: eb7997d1c393e5c4b89c94b0a2c3d9bc, type: 3}
   Connect: {fileID: 8300000, guid: 5dc29160be1ccdb4e873521059883154, type: 3}
   Disconnect: {fileID: 8300000, guid: 5f291e25dd6ce8f4a90cb071f317dc9d, type: 3}
+  ClockTicking: {fileID: 8300000, guid: 4b6fbb99a956f994490f54c202331ac9, type: 3}
+  GameOver: {fileID: 8300000, guid: 33a2bc96d00c30d4395ca74c89b32843, type: 3}
 --- !u!4 &1016194385
 Transform:
   m_ObjectHideFlags: 0
@@ -2069,7 +2071,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Girl Sprites by Sutemo on itch.io
 
-    Dating Sim UI by LoudEyes on itch.io'
+    Dating Sim UI by LoudEyes on itch.io
+
+    Music
+    by Sakura Girl'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: edd2b94739f2d824ea634618e47db1ee, type: 2}
   m_sharedMaterial: {fileID: -8396297762366508872, guid: edd2b94739f2d824ea634618e47db1ee, type: 2}
@@ -2104,7 +2109,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
