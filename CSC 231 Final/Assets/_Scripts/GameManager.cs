@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     string currentP;
 
     string currentD;
+
+    AudioManager audiomanager;
+
     private void Awake()
     {
         instance = this;
@@ -56,6 +59,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        PlayGameMusic();
         maxConnections = 4;
         connectionsLeft = maxConnections;
 
@@ -87,6 +92,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             ClearChain();
+            DisconnectSound();
         }
 
         if (timer <= 0)
@@ -130,6 +136,7 @@ public class GameManager : MonoBehaviour
             bonusConnections = 0;
 
             CalculateScore();
+            ConnectSound();
         }
 
         ClearChain();
@@ -291,6 +298,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameOverSound();
         SceneManager.LoadScene(2);
 
         Grid.GetComponent<GridManager>().ResetGrid();
@@ -311,5 +319,30 @@ public class GameManager : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    public void ConnectSound()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.Connect);
+    }
+
+    public void DisconnectSound()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.Disconnect);
+    }
+
+    public void ClockTicking()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.ClockTicking);
+    }
+
+    public void PlayGameMusic()
+    {
+        AudioManager.instance.PlayGameMusic(audiomanager.GameMusic);
+    }
+
+    public void GameOverSound()
+    {
+        AudioManager.instance.PlaySFX(audiomanager.GameOver);
     }
 }
