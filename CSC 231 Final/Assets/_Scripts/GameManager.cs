@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject Girl;
 
+    [SerializeField] GameObject Stats;
+
     bool hasTicked;
 
     int maxConnections;
@@ -63,15 +65,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     public List<GameObject> bubbleChain;
@@ -345,6 +339,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameOverSound();
+        Stats.GetComponent<Stats>().SetStats(highScoreMove, highScoreRound, highestMultiplier, curRound, fastestRound);
         Girl.GetComponent<GirlScript>().SetExpression(2);
         SceneManager.LoadScene(2);
 
