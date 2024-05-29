@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class HairColor
+public class HairColor // test 
 {
     public List<Sprite> hairTypes;
 }

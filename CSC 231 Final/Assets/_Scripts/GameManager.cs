@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject ScoreManager;
 
-    [SerializeField] GameObject Background;
+    [SerializeField] GameObject Background; //test
 
     [SerializeField] GameObject Girl;
 
