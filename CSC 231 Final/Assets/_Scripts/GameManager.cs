@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject Girl;
 
+    bool hasTicked;
+
     int maxConnections;
 
     int movesLeft;
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
         {
             timer = timer - Time.deltaTime;
 
-            if (timer <= 10)
+            if (timer <= 10 && !hasTicked)
             {
                 ClockTicking();
             }
@@ -285,6 +287,7 @@ public class GameManager : MonoBehaviour
         Grid.GetComponent<GridManager>().ResetGrid();
 
         timer = 30;
+        hasTicked = false;
 
         score = 0;
 
@@ -365,6 +368,31 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
+    public int GetFastestDate()
+    {
+        return fastestRound;
+    }
+
+    public int GetHighestScoreRound()
+    {
+        return highScoreRound;
+    }
+
+    public int GetHighestScoreMove()
+    {
+        return highScoreMove;
+    }
+
+    public int GetMultiplier()
+    {
+        return highestMultiplier;
+    }
+
+    public int GetStreak()
+    {
+        return curRound;
+    }
+
     public void ConnectSound()
     {
         AudioManager.instance.PlaySFX(audiomanager.Connect);
@@ -378,6 +406,7 @@ public class GameManager : MonoBehaviour
     public void ClockTicking()
     {
         AudioManager.instance.PlaySFX(audiomanager.ClockTicking);
+        hasTicked = true;
     }
 
     public void PlayGameMusic()

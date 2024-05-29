@@ -13,11 +13,6 @@ public class GirlScript : MonoBehaviour
 
     List<Sprite> expressions;
 
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     void Start()
     {
         Body = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
