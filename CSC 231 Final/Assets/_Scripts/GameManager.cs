@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
@@ -48,11 +49,27 @@ public class GameManager : MonoBehaviour
 
     string currentD;
 
+    int highScoreRound;
+
+    int highScoreMove;
+
+    int highestMultiplier;
+
+    int fastestRound;
+
     AudioManager audiomanager;
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public List<GameObject> bubbleChain;
@@ -80,6 +97,11 @@ public class GameManager : MonoBehaviour
 
         scoreGoal = 250;
 
+        highScoreRound = 0;
+        highScoreMove = 0;
+        highestMultiplier = 0;
+        fastestRound = 30;
+
         NewRound();
     }
     void Update()
@@ -104,6 +126,11 @@ public class GameManager : MonoBehaviour
         else
         {
             timer = timer - Time.deltaTime;
+
+            if (timer <= 10)
+            {
+                ClockTicking();
+            }
         }
 
 
@@ -160,11 +187,22 @@ public class GameManager : MonoBehaviour
 
         }
 
-        Debug.Log(newScore);
+        if (highestMultiplier < currentChainMult)
+        {
+            highestMultiplier = currentChainMult;
+        }
+
+        if (newScore > highScoreMove)
+        {
+            highScoreMove = newScore;
+        }
 
         score = score + (newScore * currentChainMult);
 
-        Debug.Log(score);
+        if (score > highScoreRound)
+        {
+            highScoreRound = score;
+        }
 
         ScoreManager.GetComponent<ScoreManager>().GainPoints(score);
 
@@ -231,6 +269,11 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+        if (30 - timer < fastestRound)
+        {
+            fastestRound = (int)(30 - timer);
+        }
+
 
         for (int i = 0; i < curRound; i++)
         {
@@ -268,6 +311,10 @@ public class GameManager : MonoBehaviour
         {
             NewRound();
         }
+        else if (movesLeft == 0)
+        {
+            GameOver();
+        }
         else if (((float)score / (float)scoreGoal) * 100 >= 66)
         {
             Debug.Log("Higher than 66");
@@ -279,10 +326,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Higher than 33");
 
             Girl.GetComponent<GirlScript>().SetExpression(5);
-        }
-        else if (movesLeft == 0)
-        {
-            GameOver();
         }
     }
 
@@ -299,6 +342,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameOverSound();
+        Girl.GetComponent<GirlScript>().SetExpression(2);
         SceneManager.LoadScene(2);
 
         Grid.GetComponent<GridManager>().ResetGrid();
